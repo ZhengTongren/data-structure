@@ -57,6 +57,47 @@ void SLPrint(const SL* ps)
 {
 	for (int i = 0; i < ps->sz; i++)
 	{
-		printf("%d\n", ps->a[i]);
+		printf("%d ", ps->a[i]);
 	}
+	printf("\n");
+}
+
+
+
+void SLPopBack(SL* ps)
+{
+	//±©Á¦¼ì²é
+	assert(ps->sz > 0);//¶ÏÑÔ
+
+	ps->sz--;
+}
+
+
+
+void SLPushFront(SL* ps, SLDataType x)
+{
+	SLCheckCapacity(ps);
+
+	SLDataType end = ps->sz - 1;
+	while (end >= 0)
+	{
+		ps->a[end + 1] = ps->a[end];
+		end--;
+	}
+
+	ps->a[0] = x;
+	ps->sz++;
+}
+
+
+
+void SLPopFront(SL* ps)
+{
+	assert(ps->sz > 0);
+
+	for (int i = 1; i < ps->sz; i++)
+	{
+		ps->a[i - 1] = ps->a[i];
+	}
+	ps->sz--;
 }
