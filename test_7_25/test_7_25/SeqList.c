@@ -108,11 +108,9 @@ void SLInsert(SL* ps, int pos, SLDataType x)
 {
 	SLCheckCapacity(ps);
 	
-	int end = ps->sz;
-	while (end >= pos)
+	for (int i = ps->sz - 1; i >= pos; i--)
 	{
-		ps->a[end + 1] = ps->a[end];
-		end--;
+		ps->a[i + 1] = ps->a[i];
 	}
 
 	ps->a[pos] = x;
@@ -123,7 +121,7 @@ void SLInsert(SL* ps, int pos, SLDataType x)
 
 void SLErase(SL* ps, int pos)
 {
-	for (int i = pos + 1; i < ps->sz; i++)
+	for (int i = pos + 1; i <= ps->sz - 1; i++)
 	{
 		ps->a[i - 1] = ps->a[i];
 	}
