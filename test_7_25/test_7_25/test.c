@@ -66,8 +66,31 @@ void TestSeqList2()
 	SLDestroy(&x2);
 }
 
+
+void TestSeqList3()
+{
+	SL x;
+	SLInit(&x);
+
+	SLPushBack(&x, 10);
+	SLPushBack(&x, 10);
+	SLPushBack(&x, 30);
+	SLPushBack(&x, 10);
+	SLPushBack(&x, 10);
+
+	SLPrint(&x);
+
+	SLInsert(&x, 2, 20);
+	SLPrint(&x);
+
+	SLErase(&x, 3);
+	SLPrint(&x);
+
+	SLDestroy(&x);
+}
+
 int main()
 {
-	TestSeqList2();
+	TestSeqList3();
 	return 0;
 }

@@ -39,3 +39,8 @@ void SLPopBack(SL* ps);
 // 打印
 void SLPrint(const SL* ps);
 
+// 在pos位置插入
+void SLInsert(SL* ps, int pos, SLDataType x);
+
+// 在pos位置删除
+void SLErase(SL* ps, int pos);

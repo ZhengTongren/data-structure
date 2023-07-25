@@ -78,7 +78,7 @@ void SLPushFront(SL* ps, SLDataType x)
 {
 	SLCheckCapacity(ps);
 
-	SLDataType end = ps->sz - 1;
+	int end = ps->sz - 1;
 	while (end >= 0)
 	{
 		ps->a[end + 1] = ps->a[end];
@@ -96,6 +96,34 @@ void SLPopFront(SL* ps)
 	assert(ps->sz > 0);
 
 	for (int i = 1; i < ps->sz; i++)
+	{
+		ps->a[i - 1] = ps->a[i];
+	}
+	ps->sz--;
+}
+
+
+
+void SLInsert(SL* ps, int pos, SLDataType x)
+{
+	SLCheckCapacity(ps);
+	
+	int end = ps->sz;
+	while (end >= pos)
+	{
+		ps->a[end + 1] = ps->a[end];
+		end--;
+	}
+
+	ps->a[pos] = x;
+	ps->sz++;
+}
+
+
+
+void SLErase(SL* ps, int pos)
+{
+	for (int i = pos + 1; i < ps->sz; i++)
 	{
 		ps->a[i - 1] = ps->a[i];
 	}
