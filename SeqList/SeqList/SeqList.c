@@ -1,4 +1,5 @@
-#define _CRT_SECURE_NO_WARNINGS 1
+ï»¿#define _CRT_SECURE_NO_WARNINGS 1
+
 
 #include "SeqList.h"
 
@@ -38,7 +39,7 @@ void SLCheckCapacity(SL* ps)
 		}
 		ps->a = tmp;
 		ps->capacity *= 2;
-		//printf("À©ÈÝ³É¹¦\n");
+		//printf("Ý³É¹\n");
 	}
 }
 
@@ -66,8 +67,8 @@ void SLPrint(const SL* ps)
 
 void SLPopBack(SL* ps)
 {
-	//±©Á¦¼ì²é
-	assert(ps->sz > 0);//¶ÏÑÔ
+	//
+	assert(ps->sz > 0);//
 
 	ps->sz--;
 }
@@ -107,7 +108,7 @@ void SLPopFront(SL* ps)
 void SLInsert(SL* ps, int pos, SLDataType x)
 {
 	SLCheckCapacity(ps);
-	
+
 	for (int i = ps->sz - 1; i >= pos; i--)
 	{
 		ps->a[i + 1] = ps->a[i];
