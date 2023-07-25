@@ -1,0 +1,62 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+
+#include "SeqList.h"
+
+
+
+void SLInit(SL* ps)
+{
+	ps->a = (SLDataType*)malloc(sizeof(SLDataType) * CapcityDefault);
+	if (ps->a == NULL)
+	{
+		perror("malloc");
+		exit(-1);
+	}
+	ps->sz = 0;
+	ps->capacity = CapcityDefault;
+}
+
+
+
+void SLDestroy(SL* ps)
+{
+	free(ps->a);
+	ps->a = NULL;
+	ps->capacity = ps->sz = 0;
+}
+
+
+void SLCheckCapacity(SL* ps)
+{
+	if (ps->sz == ps->capacity)
+	{
+		SLDataType* tmp = (SLDataType*)realloc(ps->a, ps->capacity * 2 * sizeof(SLDataType));
+		if (tmp == NULL)
+		{
+			perror("realloc");
+			exit(-1);
+		}
+		ps->a = tmp;
+		ps->capacity *= 2;
+		//printf("À©ÈÝ³É¹¦\n");
+	}
+}
+
+
+void SLPushBack(SL* ps, SLDataType x)
+{
+	SLCheckCapacity(ps);
+
+	ps->a[ps->sz] = x;
+	ps->sz++;
+}
+
+
+
+void SLPrint(const SL* ps)
+{
+	for (int i = 0; i < ps->sz; i++)
+	{
+		printf("%d\n", ps->a[i]);
+	}
+}
