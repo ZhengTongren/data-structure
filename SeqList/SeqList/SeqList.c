@@ -115,6 +115,7 @@ void SLPopFront(SL* ps)
 void SLInsert(SL* ps, int pos, SLDataType x)
 {
 	assert(ps);
+	assert(pos >= 0 && pos <= ps->sz);//保证数据连续
 
 	SLCheckCapacity(ps);
 
