@@ -7,6 +7,8 @@
 
 void SLInit(SL* ps)
 {
+	assert(ps);
+
 	ps->a = (SLDataType*)malloc(sizeof(SLDataType) * CapcityDefault);
 	if (ps->a == NULL)
 	{
@@ -21,6 +23,8 @@ void SLInit(SL* ps)
 
 void SLDestroy(SL* ps)
 {
+	assert(ps);
+
 	free(ps->a);
 	ps->a = NULL;
 	ps->capacity = ps->sz = 0;
@@ -29,6 +33,8 @@ void SLDestroy(SL* ps)
 
 void SLCheckCapacity(SL* ps)
 {
+	assert(ps);
+
 	if (ps->sz == ps->capacity)
 	{
 		SLDataType* tmp = (SLDataType*)realloc(ps->a, ps->capacity * 2 * sizeof(SLDataType));
@@ -58,6 +64,7 @@ void SLPushBack(SL* ps, SLDataType x)
 
 void SLPrint(const SL* ps)
 {
+	assert(ps);
 	for (int i = 0; i < ps->sz; i++)
 	{
 		printf("%d ", ps->a[i]);
@@ -69,8 +76,8 @@ void SLPrint(const SL* ps)
 
 void SLPopBack(SL* ps)
 {
-	//
-	assert(ps->sz > 0);//
+	//assert(ps);
+	//assert(ps->sz > 0);//
 
 	//ps->sz--;
 	SLErase(ps, ps->sz - 1);
@@ -80,6 +87,7 @@ void SLPopBack(SL* ps)
 
 void SLPushFront(SL* ps, SLDataType x)
 {
+	//assert(ps);
 	/*SLCheckCapacity(ps);
 
 	int end = ps->sz - 1;
@@ -99,6 +107,7 @@ void SLPushFront(SL* ps, SLDataType x)
 
 void SLPopFront(SL* ps)
 {
+	//assert(ps);
 	/*assert(ps->sz > 0);
 
 	for (int i = 1; i < ps->sz; i++)
@@ -133,6 +142,9 @@ void SLInsert(SL* ps, int pos, SLDataType x)
 void SLErase(SL* ps, int pos)
 {
 	assert(ps);
+
+	assert(pos >= 0 && pos < ps->sz);
+
 	for (int i = pos + 1; i <= ps->sz - 1; i++)
 	{
 		ps->a[i - 1] = ps->a[i];
@@ -144,10 +156,22 @@ void SLErase(SL* ps, int pos)
 
 int SLFind(SL* ps, SLDataType x)
 {
+	assert(ps);
 	for (int i = 0; i < ps->sz; i++)
 	{
 		if (x == ps->a[i])
 			return i;
 	}
 	return -1;
+}
+
+
+
+void SLModify(SL* ps, int pos, SLDataType x)
+{
+	assert(ps);
+
+	assert(pos >= 0 && pos < ps->sz);
+
+	ps->a[pos] = x;
 }

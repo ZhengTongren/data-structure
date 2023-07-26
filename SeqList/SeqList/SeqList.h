@@ -48,3 +48,6 @@ void SLErase(SL* ps, int pos);
 
 
 int SLFind(SL* ps, SLDataType x);
+
+
+void SLModify(SL* ps, int pos, SLDataType x);
