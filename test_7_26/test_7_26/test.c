@@ -61,4 +61,35 @@
 //	return 0;
 //}
 
+//
+//int removeElement(int* nums, int numsSize, int val) {
+//    int src = 0;
+//    int dst = 0;
+//    for (src = 0; src < numsSize; src++)
+//    {
+//        if (nums[src] != val)
+//        {
+//            nums[dst] = nums[src];
+//            dst++;
+//        }
+//    }
+//    return dst;
+//}
+//
+//
+//int main()
+//{
+//    int nums[] = { 3,2,2,3 };
+//    int val = 3;
+//    int sz = sizeof(nums) / sizeof(nums[0]);
+//
+//    sz = removeElement(nums, sz, val);
+//
+//    for (int i = 0; i < sz; i++)
+//    {
+//        printf("%d ",nums[i]);
+//    }
+//    return 0;
+//}
+
 
