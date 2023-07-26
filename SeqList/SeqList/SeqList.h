@@ -45,3 +45,6 @@ void SLInsert(SL* ps, int pos, SLDataType x);
 
 // ÔÚposÎ»ÖÃÉ¾³ı
 void SLErase(SL* ps, int pos);
+
+
+int SLFind(SL* ps, SLDataType x);

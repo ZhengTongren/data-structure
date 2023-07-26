@@ -89,8 +89,33 @@ void TestSeqList3()
 	SLDestroy(&x);
 }
 
+
+void TestSeqList4()
+{
+	SL x1;
+	SLInit(&x1);
+
+	SLPushBack(&x1, 10);
+	SLPushBack(&x1, 20);
+	SLPushBack(&x1, 30);
+	SLPushBack(&x1, 40);
+	SLPushBack(&x1, 50);
+	SLPushBack(&x1, 60);
+
+	SLPrint(&x1);
+
+	int x = 0;
+	scanf("%d", &x);
+	int pos = SLFind(&x1, x);
+	SLInsert(&x1, pos, x * 10);
+	SLPrint(&x1);
+
+	SLDestroy(&x1);
+}
+
+
 int main()
 {
-	TestSeqList3();
+	TestSeqList4();
 	return 0;
 }

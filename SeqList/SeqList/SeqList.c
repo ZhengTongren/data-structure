@@ -46,10 +46,12 @@ void SLCheckCapacity(SL* ps)
 
 void SLPushBack(SL* ps, SLDataType x)
 {
-	SLCheckCapacity(ps);
+	/*SLCheckCapacity(ps);
 
 	ps->a[ps->sz] = x;
-	ps->sz++;
+	ps->sz++;*/
+
+	SLInsert(ps, ps->sz, x);
 }
 
 
@@ -70,14 +72,15 @@ void SLPopBack(SL* ps)
 	//
 	assert(ps->sz > 0);//
 
-	ps->sz--;
+	//ps->sz--;
+	SLErase(ps, ps->sz - 1);
 }
 
 
 
 void SLPushFront(SL* ps, SLDataType x)
 {
-	SLCheckCapacity(ps);
+	/*SLCheckCapacity(ps);
 
 	int end = ps->sz - 1;
 	while (end >= 0)
@@ -87,26 +90,32 @@ void SLPushFront(SL* ps, SLDataType x)
 	}
 
 	ps->a[0] = x;
-	ps->sz++;
+	ps->sz++;*/
+
+	SLInsert(ps, 0, x);
 }
 
 
 
 void SLPopFront(SL* ps)
 {
-	assert(ps->sz > 0);
+	/*assert(ps->sz > 0);
 
 	for (int i = 1; i < ps->sz; i++)
 	{
 		ps->a[i - 1] = ps->a[i];
 	}
-	ps->sz--;
+	ps->sz--;*/
+	SLErase(ps, 0);
+
 }
 
 
 
 void SLInsert(SL* ps, int pos, SLDataType x)
 {
+	assert(ps);
+
 	SLCheckCapacity(ps);
 
 	for (int i = ps->sz - 1; i >= pos; i--)
@@ -122,9 +131,22 @@ void SLInsert(SL* ps, int pos, SLDataType x)
 
 void SLErase(SL* ps, int pos)
 {
+	assert(ps);
 	for (int i = pos + 1; i <= ps->sz - 1; i++)
 	{
 		ps->a[i - 1] = ps->a[i];
 	}
 	ps->sz--;
+}
+
+
+
+int SLFind(SL* ps, SLDataType x)
+{
+	for (int i = 0; i < ps->sz; i++)
+	{
+		if (x == ps->a[i])
+			return i;
+	}
+	return -1;
 }
