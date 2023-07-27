@@ -70,7 +70,23 @@
 //	return 0;
 //}
 //
+
 //
+//
+//int removeDuplicates(int* nums, int numsSize) {
+//    int src = 0, dst = 0;
+//    for (src = 0; src < numsSize; src++)
+//    {
+//        if (nums[dst] != nums[src])
+//        {
+//            dst++;
+//            nums[dst] = nums[src];
+//        }
+//    }
+//    return dst + 1;
+//}
+
+
 
 
 
