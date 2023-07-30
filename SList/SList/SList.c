@@ -48,6 +48,7 @@ SLTNode* BuySListNode(SLTDataType x)
 //}
 
 
+//二级指针的目的 是对头指针进行修改
 void SLTPushBack(SLTNode** pphead, SLTDataType x)
 {
 	//assert(phead);
@@ -124,7 +125,7 @@ SLTNode* SLTFind(SLTNode* phead, SLTDataType x)
 
 void SLTInsert(SLTNode** pphead, SLTNode* pos, SLTDataType x)
 {
-	assert(*pphead);
+	assert(pos);
 	//在开头插入
 	if (pos == *pphead)
 	{
@@ -147,16 +148,17 @@ void SLTInsert(SLTNode** pphead, SLTNode* pos, SLTDataType x)
 
 void SLTInsertAfter(SLTNode* pos, SLTDataType x)
 {
-	SLTNode* posafter = pos->next;
+	assert(pos);//要断言什么 在于程序跟什么相关
 	SLTNode* newnode = BuySListNode(x);
 
-	newnode->next = posafter;
+	newnode->next = pos->next;
 	pos->next = newnode;
 }
 
 
 void SLTErase(SLTNode** pphead, SLTNode* pos)
 {
+	assert(pos);
 	//头删
 	if (pos == *pphead)
 	{
@@ -165,25 +167,26 @@ void SLTErase(SLTNode** pphead, SLTNode* pos)
 	else
 	{
 		//删除中间链表
-		SLTNode* posafter = pos->next;
 		SLTNode* cur = *pphead;
 
 		while (cur->next != pos)
 		{
 			cur = cur->next;
 		}
+		cur->next = pos->next;
 		free(pos);
-		pos = NULL;
-		cur->next = posafter;
+		pos = NULL;//对形参的改变不会影响实参，出于好习惯可以置空
 	}
 }
 
 
 void SLTEraseAfter(SLTNode* pos)
 {
+	assert(pos);
+	//检查pos是否为尾节点
 	assert(pos->next);
 	SLTNode* cur = pos->next->next;
+	pos->next = cur;
 	free(pos->next);
 	pos->next = NULL;
-	pos->next = cur;
 }

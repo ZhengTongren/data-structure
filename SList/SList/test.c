@@ -115,7 +115,10 @@ void TestSList4()
 
 	scanf("%d", &x);
 	SLTNode* cur = SLTFind(plist, x);
-	SLTInsertAfter(cur, x * 10);
+	if (cur)
+	{
+		SLTInsertAfter(cur, x * 10);
+	}
 	SLTPrint(plist);
 	//printf("%p\n", cur);
 }
@@ -135,8 +138,11 @@ void TestSList5()
 	int x = 0;
 	scanf("%d", &x);
 	SLTNode* cur = SLTFind(plist, x);
+	if (cur)
+	{
+		SLTEraseAfter(cur);
+	}
 	//SLTErase(&plist, cur);
-	SLTEraseAfter(cur);
 	SLTPrint(plist);
 
 }
