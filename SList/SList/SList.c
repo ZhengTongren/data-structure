@@ -4,6 +4,8 @@
 #include "SList.h"
 
 
+//要不要断言 取决于它合不合理
+
 void SLTPrint(SLTNode* phead)
 {
 	SLTNode* cur = phead;
@@ -51,7 +53,7 @@ SLTNode* BuySListNode(SLTDataType x)
 //二级指针的目的 是对头指针进行修改
 void SLTPushBack(SLTNode** pphead, SLTDataType x)
 {
-	//assert(phead);
+	assert(pphead);
 	SLTNode* newnode = BuySListNode(x);
 
 	if (*pphead == NULL)
@@ -74,6 +76,7 @@ void SLTPushBack(SLTNode** pphead, SLTDataType x)
 
 void SLTPushFront(SLTNode** pphead, SLTDataType x)
 {
+	assert(pphead);
 	SLTNode* newnode = BuySListNode(x);
 	newnode->next = *pphead;
 	*pphead = newnode;
@@ -82,6 +85,7 @@ void SLTPushFront(SLTNode** pphead, SLTDataType x)
 
 void SLTPopBack(SLTNode** pphead)
 {
+	assert(pphead);//pphead 是 plist 的地址，正常情况下一定不为空
 	assert(*pphead);
 
 	SLTNode* tail = *pphead;
@@ -104,6 +108,7 @@ void SLTPopBack(SLTNode** pphead)
 
 void SLTPopFront(SLTNode** pphead)
 {
+	assert(pphead);
 	assert(*pphead);
 
 	SLTNode* newhead = (*pphead)->next;
@@ -125,6 +130,7 @@ SLTNode* SLTFind(SLTNode* phead, SLTDataType x)
 
 void SLTInsert(SLTNode** pphead, SLTNode* pos, SLTDataType x)
 {
+	assert(pphead);
 	assert(pos);
 	//在开头插入
 	if (pos == *pphead)
