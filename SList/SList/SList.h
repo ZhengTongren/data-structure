@@ -27,4 +27,13 @@ SLTNode* BuySListNode(SLTDataType x);
 //void SLTPushFront(SLTNode* phead, SLTNode* newnode);
 
 
-void SLTPushBack(SLTNode* phead, SLTDataType x);
+void SLTPushBack(SLTNode** pphead, SLTDataType x);
+
+
+void SLTPushFront(SLTNode** pphead, SLTDataType x);
+
+
+void SLTPopBack(SLTNode** pphead);
+
+
+void SLTPopFront(SLTNode** pphead);

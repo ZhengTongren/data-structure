@@ -26,7 +26,7 @@ void TestSList1()
 	//}
 	SLTPrint(plist);
 	printf("\n");
-	SLTPushBack(plist, 10000);
+	SLTPushBack(&plist, 10000);
 	SLTPrint(plist);
 
 }
@@ -37,12 +37,62 @@ void TestSList2()
 {
 	SLTNode* plist = NULL;
 
-	SLTPushBack(plist, 10);
-	SLTPushBack(plist, 20);
-	SLTPushBack(plist, 30);
-	SLTPushBack(plist, 40);
-	SLTPushBack(plist, 50);
+	SLTPushBack(&plist, 10);
+	SLTPushBack(&plist, 20);
+	SLTPushBack(&plist, 30);
+	SLTPushBack(&plist, 40);
+	SLTPushBack(&plist, 50);
 	SLTPrint(plist);
+
+	/*SLTPushFront(&plist, 50);
+	SLTPrint(plist);*/
+
+	SLTPopBack(&plist);
+	SLTPrint(plist);
+
+	SLTPopBack(&plist);
+	SLTPrint(plist);
+
+	SLTPopBack(&plist);
+	SLTPrint(plist);
+
+	SLTPopBack(&plist);
+	SLTPrint(plist);
+
+	SLTPopBack(&plist);
+	SLTPrint(plist);
+
+	SLTPopBack(&plist);
+	SLTPrint(plist);
+}
+
+
+void TestSList3()
+{
+	SLTNode* plist = NULL;
+
+	SLTPushBack(&plist, 10);
+	SLTPushBack(&plist, 20);
+	SLTPushBack(&plist, 30);
+	SLTPushBack(&plist, 40);
+	SLTPushBack(&plist, 50);
+	SLTPrint(plist);
+
+	SLTPopFront(&plist);
+	SLTPrint(plist);
+
+	SLTPopFront(&plist);
+	SLTPrint(plist);
+
+	SLTPopFront(&plist);
+	SLTPrint(plist);
+
+	SLTPopFront(&plist);
+	SLTPrint(plist);
+
+	SLTPopFront(&plist);
+	SLTPrint(plist);
+
 }
 
 int main()
@@ -51,7 +101,7 @@ int main()
 	SLTInit(&s1);
 	SLTPrint(&s1);*/
 
-	TestSList1();
+	TestSList3();
 
 
 

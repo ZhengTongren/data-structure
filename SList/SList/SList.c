@@ -51,15 +51,67 @@ SLTNode* BuySListNode(SLTDataType x)
 
 
 
-void SLTPushBack(SLTNode* phead, SLTDataType x)
+void SLTPushBack(SLTNode** pphead, SLTDataType x)
 {
 	//assert(phead);
 	SLTNode* newnode = BuySListNode(x);
-	SLTNode* tail = phead;
-	while (tail->next != NULL)
-	{
-		tail = tail->next;
-	}
-	tail->next = newnode;
 
+	if (*pphead == NULL)
+	{
+		*pphead = newnode;
+	}
+	else
+	{
+		SLTNode* tail = *pphead;
+		while (tail->next != NULL)
+		{
+			tail = tail->next;
+		}
+		tail->next = newnode;
+
+	}
+	
+}
+
+
+
+void SLTPushFront(SLTNode** pphead, SLTDataType x)
+{
+	SLTNode* newnode = BuySListNode(x);
+	newnode->next = *pphead;
+	*pphead = newnode;
+}
+
+
+
+void SLTPopBack(SLTNode** pphead)
+{
+	assert(*pphead);
+
+	SLTNode* tail = *pphead;
+	if (tail->next == NULL)
+	{
+		free(tail);
+		*pphead = NULL;
+	}
+	else
+	{
+		while (tail->next->next)
+		{
+			tail = tail->next;
+		}
+		free(tail->next);
+		tail->next = NULL;
+	}
+}
+
+
+
+void SLTPopFront(SLTNode** pphead)
+{
+	assert(*pphead);
+
+	SLTNode* newhead = (*pphead)->next;
+	free(*pphead);
+	*pphead = newhead;
 }
