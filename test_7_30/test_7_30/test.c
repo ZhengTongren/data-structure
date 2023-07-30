@@ -108,5 +108,27 @@
 //    return 0;
 //}
 
+//
+//int main()
+//{
+//	int a = 29;
+//	int b = 15;
+//	return 0;
+//}
+
+
+//
+//int convertInteger(int A, int B) {
+//    int tmp = A ^ B;
+//    int count = 0;
+//    for (int i = 0; i < 32; i++)
+//    {
+//        if ((tmp >> i) & 1 == 1)
+//        {
+//            count++;
+//        }
+//    }
+//    return count;
+//}
 
 
