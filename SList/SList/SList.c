@@ -16,13 +16,11 @@ void SLTPrint(SLTNode* phead)
 }
 
 
-
 //void SLTInit(SLTNode* phead)
 //{
 //	phead->data = 0;
 //	phead->next = NULL;
 //}
-
 
 
 SLTNode* BuySListNode(SLTDataType x)
@@ -50,7 +48,6 @@ SLTNode* BuySListNode(SLTDataType x)
 //}
 
 
-
 void SLTPushBack(SLTNode** pphead, SLTDataType x)
 {
 	//assert(phead);
@@ -74,14 +71,12 @@ void SLTPushBack(SLTNode** pphead, SLTDataType x)
 }
 
 
-
 void SLTPushFront(SLTNode** pphead, SLTDataType x)
 {
 	SLTNode* newnode = BuySListNode(x);
 	newnode->next = *pphead;
 	*pphead = newnode;
 }
-
 
 
 void SLTPopBack(SLTNode** pphead)
@@ -106,7 +101,6 @@ void SLTPopBack(SLTNode** pphead)
 }
 
 
-
 void SLTPopFront(SLTNode** pphead)
 {
 	assert(*pphead);
@@ -114,4 +108,82 @@ void SLTPopFront(SLTNode** pphead)
 	SLTNode* newhead = (*pphead)->next;
 	free(*pphead);
 	*pphead = newhead;
+}
+
+
+SLTNode* SLTFind(SLTNode* phead, SLTDataType x)
+{
+	SLTNode* cur = phead;
+	while (cur->data != x)
+	{
+		cur = cur->next;
+	}
+	return cur;
+}
+
+
+void SLTInsert(SLTNode** pphead, SLTNode* pos, SLTDataType x)
+{
+	assert(*pphead);
+	//在开头插入
+	if (pos == *pphead)
+	{
+		SLTPushFront(pphead, x);
+	}
+	else
+	{
+		//在中间插入
+		SLTNode* newnode = BuySListNode(x);
+		SLTNode* cur = *pphead;
+		while (cur->next != pos)
+		{
+			cur = cur->next;
+		}
+		newnode->next = pos;
+		cur->next = newnode;
+	}
+}
+
+
+void SLTInsertAfter(SLTNode* pos, SLTDataType x)
+{
+	SLTNode* posafter = pos->next;
+	SLTNode* newnode = BuySListNode(x);
+
+	newnode->next = posafter;
+	pos->next = newnode;
+}
+
+
+void SLTErase(SLTNode** pphead, SLTNode* pos)
+{
+	//头删
+	if (pos == *pphead)
+	{
+		SLTPopFront(pphead);
+	}
+	else
+	{
+		//删除中间链表
+		SLTNode* posafter = pos->next;
+		SLTNode* cur = *pphead;
+
+		while (cur->next != pos)
+		{
+			cur = cur->next;
+		}
+		free(pos);
+		pos = NULL;
+		cur->next = posafter;
+	}
+}
+
+
+void SLTEraseAfter(SLTNode* pos)
+{
+	assert(pos->next);
+	SLTNode* cur = pos->next->next;
+	free(pos->next);
+	pos->next = NULL;
+	pos->next = cur;
 }

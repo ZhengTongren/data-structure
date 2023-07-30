@@ -17,23 +17,26 @@ typedef struct SLTNode
 
 void SLTPrint(SLTNode* phead);
 
-
 //void SLTInit(SLTNode* phead);
-
 
 SLTNode* BuySListNode(SLTDataType x);
 
-
 //void SLTPushFront(SLTNode* phead, SLTNode* newnode);
-
 
 void SLTPushBack(SLTNode** pphead, SLTDataType x);
 
-
 void SLTPushFront(SLTNode** pphead, SLTDataType x);
-
 
 void SLTPopBack(SLTNode** pphead);
 
-
 void SLTPopFront(SLTNode** pphead);
+
+SLTNode* SLTFind(SLTNode* phead, SLTDataType x);
+
+void SLTInsert(SLTNode** pphead, SLTNode* pos, SLTDataType x);
+
+void SLTInsertAfter(SLTNode* pos, SLTDataType x);
+
+void SLTErase(SLTNode** pphead, SLTNode* pos);
+
+void SLTEraseAfter(SLTNode* pos);

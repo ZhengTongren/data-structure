@@ -95,13 +95,60 @@ void TestSList3()
 
 }
 
+
+void TestSList4()
+{
+	SLTNode* plist = NULL;
+
+	SLTPushBack(&plist, 10);
+	SLTPushBack(&plist, 20);
+	SLTPushBack(&plist, 30);
+	SLTPushBack(&plist, 40);
+	SLTPushBack(&plist, 50);
+	SLTPrint(plist);
+
+	int x = 0;
+	/*scanf("%d", &x);
+	SLTNode* cur = SLTFind(plist, x);
+	SLTInsert(&plist, cur, x * 10);
+	SLTPrint(plist);*/
+
+	scanf("%d", &x);
+	SLTNode* cur = SLTFind(plist, x);
+	SLTInsertAfter(cur, x * 10);
+	SLTPrint(plist);
+	//printf("%p\n", cur);
+}
+
+
+void TestSList5()
+{
+	SLTNode* plist = NULL;
+
+	SLTPushBack(&plist, 10);
+	SLTPushBack(&plist, 20);
+	SLTPushBack(&plist, 30);
+	SLTPushBack(&plist, 40);
+	SLTPushBack(&plist, 50);
+	SLTPrint(plist);
+
+	int x = 0;
+	scanf("%d", &x);
+	SLTNode* cur = SLTFind(plist, x);
+	//SLTErase(&plist, cur);
+	SLTEraseAfter(cur);
+	SLTPrint(plist);
+
+}
+
+
 int main()
 {
 	/*SLTNode s1;
 	SLTInit(&s1);
 	SLTPrint(&s1);*/
 
-	TestSList3();
+	TestSList5();
 
 
 
