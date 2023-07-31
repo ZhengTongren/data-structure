@@ -178,3 +178,40 @@
 //}
 
 
+//class PalindromeList {
+//public:
+//    bool chkPalindrome(ListNode* A) {
+//        // write code here
+//        ListNode* slow = A;
+//        ListNode* fast = A;
+//        while (fast && fast->next)
+//        {
+//            slow = slow->next;
+//            fast = fast->next->next;
+//        }
+//
+//        ListNode* n1 = NULL;
+//        ListNode* n2 = slow;
+//        ListNode* n3 = NULL;
+//        while (n2)
+//        {
+//            n3 = n2->next;
+//            n2->next = n1;
+//            n1 = n2;
+//            n2 = n3;
+//        }
+//
+//        ListNode* cur = A;
+//
+//        while (cur->next != n1 && cur != n1)
+//        {
+//            if (cur->val != n1->val)
+//                return false;
+//            cur = cur->next;
+//            n1 = n1->next;
+//        }
+//        return true;
+//    }
+//};
+
+
