@@ -148,13 +148,29 @@ void TestSList5()
 }
 
 
+void TestSList6()
+{
+	SLTNode* plist = NULL;
+
+	SLTPushBack(&plist, 10);
+	SLTPushBack(&plist, 20);
+	SLTPushBack(&plist, 30);
+	SLTPushBack(&plist, 40);
+	SLTPushBack(&plist, 50);
+	SLTPrint(plist);
+
+	SLTDestroy(&plist);
+
+}
+
+
 int main()
 {
 	/*SLTNode s1;
 	SLTInit(&s1);
 	SLTPrint(&s1);*/
 
-	TestSList5();
+	TestSList6();
 
 
 

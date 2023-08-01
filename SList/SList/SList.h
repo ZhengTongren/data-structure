@@ -40,3 +40,5 @@ void SLTInsertAfter(SLTNode* pos, SLTDataType x);
 void SLTErase(SLTNode** pphead, SLTNode* pos);
 
 void SLTEraseAfter(SLTNode* pos);
+
+void SLTDestroy(SLTNode** pphead);
