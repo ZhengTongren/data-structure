@@ -322,3 +322,33 @@
 //}
 
 
+//ListNode* partition(ListNode* pHead, int x) {
+//    // write code here
+//    struct ListNode* ghead, * gtail, * lhead, * ltail;
+//    ghead = gtail = (struct ListNode*)malloc(sizeof(struct ListNode));
+//    lhead = ltail = (struct ListNode*)malloc(sizeof(struct ListNode));
+//
+//    struct ListNode* cur = pHead;
+//    while (cur)
+//    {
+//        if (cur->val >= x)
+//        {
+//            gtail->next = cur;
+//            gtail = cur;
+//        }
+//        else
+//        {
+//            ltail->next = cur;
+//            ltail = cur;
+//        }
+//        cur = cur->next;
+//    }
+//    gtail->next = NULL;
+//    ltail->next = ghead->next;
+//    struct ListNode* head = lhead->next;
+//    free(ghead);
+//    free(lhead);
+//    return head;
+//}
+
+
