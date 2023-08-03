@@ -180,5 +180,86 @@
 //
 
 
+//class Partition {
+//public:
+//    ListNode* partition(ListNode* pHead, int x) {
+//        // write code here
+//        struct ListNode* ghead, * gtail, * lhead, * ltail;
+//        ghead = gtail = (struct ListNode*)malloc(sizeof(struct ListNode));
+//        lhead = ltail = (struct ListNode*)malloc(sizeof(struct ListNode));
+//        struct ListNode* cur = pHead;
+//
+//        while (cur)
+//        {
+//            if (cur->val >= x)
+//            {
+//                gtail->next = cur;
+//                gtail = cur;
+//            }
+//            else
+//            {
+//                ltail->next = cur;
+//                ltail = cur;
+//            }
+//            cur = cur->next;
+//        }
+//
+//        ltail->next = ghead->next;        
+//		  // 不置空 可能出现循环
+//        gtail->next = NULL;
+//
+//        struct ListNode* head = lhead->next;
+//        free(lhead);
+//        free(ghead);
+//        return head;
+//    }
+//};
+
+
+//class PalindromeList {
+//
+//    struct ListNode* middleNode(struct ListNode* head) {
+//        struct ListNode* slow, * fast;
+//        slow = fast = head;
+//        while (fast && fast->next)
+//        {
+//            slow = slow->next;
+//            fast = fast->next->next;
+//        }
+//        return slow;
+//    }
+//
+//    struct ListNode* reverseList(struct ListNode* head) {
+//        struct ListNode* cur = head;
+//        struct ListNode* newhead = NULL;
+//        while (cur)
+//        {
+//            struct ListNode* next = cur->next;
+//            cur->next = newhead;
+//            newhead = cur;
+//            cur = next;
+//        }
+//        return newhead;
+//    }
+//
+//
+//public:
+//    bool chkPalindrome(ListNode* head) {
+//        // write code here
+//        struct ListNode* mid = middleNode(head);
+//        struct ListNode* newhead = reverseList(mid);
+//
+//        while (newhead)
+//        {
+//            if (head->val != newhead->val)
+//            {
+//                return false;
+//            }
+//            head = head->next;
+//            newhead = newhead->next;
+//        }
+//        return true;
+//    }
+//};
 
 
