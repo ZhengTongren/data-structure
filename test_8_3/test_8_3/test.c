@@ -263,3 +263,62 @@
 //};
 
 
+//struct ListNode* getIntersectionNode(struct ListNode* headA, struct ListNode* headB) {
+//    struct ListNode* curA = headA, * curB = headB;
+//    int lenA = 0, lenB = 0;
+//
+//    while (curA->next)
+//    {
+//        curA = curA->next;
+//        lenA++;
+//    }
+//    while (curB->next)
+//    {
+//        curB = curB->next;
+//        lenB++;
+//    }
+//
+//    if (curA != curB)
+//    {
+//        return NULL;
+//    }
+//
+//    int gap = lenA > lenB ? lenA - lenB : lenB - lenA;
+//    struct ListNode* longList = headA, * shortList = headB;
+//    if (lenB > lenA)
+//    {
+//        longList = headB;
+//        shortList = headA;
+//    }
+//
+//    while (gap--)
+//    {
+//        longList = longList->next;
+//    }
+//    while (longList != shortList)
+//    {
+//        longList = longList->next;
+//        shortList = shortList->next;
+//    }
+//    return longList;
+//}
+
+
+//bool hasCycle(struct ListNode* head) {
+//    struct ListNode* slow, * fast;
+//    slow = fast = head;
+//
+//    while (fast && fast->next)
+//    {
+//        fast = fast->next->next;
+//        slow = slow->next;
+//
+//        if (slow == fast)
+//        {
+//            return true;
+//        }
+//    }
+//    return false;
+//}
+
+
