@@ -87,8 +87,29 @@ void test4()
 
 }
 
+
+void test5()
+{
+	LTNode* plist = LTInit();
+	LTPushBack(plist, 10);
+	LTPushBack(plist, 20);
+	LTPushBack(plist, 30);
+	LTPushBack(plist, 40);
+	LTPushBack(plist, 50);
+	LTPrint(plist);
+
+	int x = 0;
+	scanf("%d", &x);
+	int pos = LTFind(plist, x);
+	LTInsert(pos, x * 10);
+	LTPrint(plist);
+	LTDestroy(plist);
+	plist = NULL;
+}
+
+
 int main()
 {
-	test4();
+	test5();
 	return 0;
 }

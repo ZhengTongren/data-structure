@@ -35,4 +35,8 @@ int LTSize(LTNode* phead);
 
 void LTInsert(LTNode* pos, LTDataType x);
 
-void LTErase( LTNode* pos);
+void LTErase(LTNode* pos);
+
+LTNode* LTFind(LTNode* phead, LTDataType x);
+
+void LTDestroy(LTNode* phead);

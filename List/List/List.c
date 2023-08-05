@@ -166,3 +166,44 @@ void LTErase(LTNode* pos)
 	posNext->prev = posPrev;
 	free(pos);
 }
+
+
+//err
+//LTNode* LTFind(LTNode* phead, LTDataType x)
+//{
+//	assert(phead);
+//	LTNode* cur = phead->next;
+//	while (cur->data != x)
+//	{
+//		cur = cur->next;
+//	}
+//	return cur;
+//}
+
+
+LTNode* LTFind(LTNode* phead, LTDataType x)
+{
+	assert(phead);
+	LTNode* cur = phead->next;
+	while (cur != phead)
+	{
+		if (cur->data == x)
+			return cur;
+		cur = cur->next;
+	}
+	return NULL;
+}
+
+
+void LTDestroy(LTNode* phead)
+{
+	assert(phead);
+	LTNode* cur = phead->next;
+	while (cur != phead)
+	{
+		LTNode* next = cur->next;
+		free(cur);
+		cur = next;
+	}
+	free(phead);
+}
