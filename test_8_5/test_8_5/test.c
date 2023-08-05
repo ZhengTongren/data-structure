@@ -119,7 +119,7 @@ struct Node
 //    }
 //    return copyhead;
 //}
-//
+
 //
 //int main()
 //{
@@ -140,6 +140,59 @@ struct Node
 //
 //    struct Node* copy = copyRandomList(n1);
 //
+//    return 0;
+//}
+
+//
+//typedef struct Node
+//{
+//    int val;
+//    struct Node* next;
+//    struct Node* random;
+//}Node;
+//
+//
+//struct Node* BuyNode(int x)
+//{
+//    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+//    node->val = x;
+//    node->next = NULL;
+//    node->random = NULL;
+//    return node;
+//}
+//
+//
+//void NodePushBack(struct Node* phead, int x)
+//{
+//    struct Node* newnode = BuyNode(x);
+//    Node* cur = phead;
+//    while (cur->next)
+//    {
+//        cur = cur->next;
+//    }
+//    cur->next = newnode;
+//
+//}
+//
+//void NodePrint(Node* phead)
+//{
+//    assert(phead);
+//    struct Node* cur = phead;
+//    while (cur)
+//    {
+//        printf("%d ->", cur->val);
+//    }
+//    printf("\n");
+//}
+//
+//
+//int main()
+//{
+//    Node* plist = NULL;
+//    NodePushBack(&plist, 10);
+//    NodePushBack(&plist, 20);
+//    NodePushBack(&plist, 30);
+//    NodePrint(&plist);
 //    return 0;
 //}
 
