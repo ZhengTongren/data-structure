@@ -61,3 +61,48 @@
 //}
 
 
+//int cmp(int* a, int* b)
+//{
+//    return *a - *b;
+//}
+//
+//int* intersection(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
+//    int size = 0;
+//    int least = nums1Size < nums2Size ? nums1Size : nums2Size;
+//    int* nums = (int*)malloc(least * sizeof(int));
+//    qsort(nums1, nums1Size, sizeof(int), cmp);
+//    qsort(nums2, nums2Size, sizeof(int), cmp);
+//
+//    int i = 0, j = 0;
+//    while (i < nums1Size && j < nums2Size)
+//    {
+//        if (nums1[i] < nums2[j])
+//        {
+//            i++;
+//        }
+//        else if (nums1[i] > nums2[j])
+//        {
+//            j++;
+//        }
+//        else if (nums1[i] == nums2[j])
+//        {
+//            if (size == 0)
+//            {
+//                nums[size++] = nums1[i];
+//            }
+//            else
+//            {
+//                if (nums[size - 1] != nums1[i])
+//                {
+//                    nums[size++] = nums1[i];
+//                }
+//            }
+//            i++;
+//        }
+//    }
+//
+//    *returnSize = size;
+//    return nums;
+//}
+
+
