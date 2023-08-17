@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <strint.h>
+#include <string.h>
 
 #define NAME 20
 #define SEX 5
@@ -13,6 +13,15 @@
 
 #define DefaultCapacity 4
 
+enum PeoModify
+{
+	Exit,
+	Name,
+	Sex,
+	Age,
+	Tele,
+	Addr
+};
 
 typedef struct PeoInfo
 {
@@ -41,3 +50,5 @@ void ConPushBack(Contact* pc);
 void ConPrint(Contact* pc);
 
 void ConErase(Contact* pc);
+
+void ConModify(Contact* pc);

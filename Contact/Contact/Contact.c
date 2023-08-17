@@ -19,7 +19,7 @@ void ConInit(Contact* pc)
 }
 
 
-void Destroy(Contact* pc)
+void ConDestroy(Contact* pc)
 {
 	assert(pc);
 
@@ -83,17 +83,113 @@ void ConPrint(Contact* pc)
 }
 
 
-void FindByName(Contact* pc)
+int FindByName(Contact* pc, char* name)
 {
 	assert(pc);
 
-
+	for (int i = 0; i < pc->sz; i++)
+	{
+		if (strcmp(pc->data[i].name, name) == 0)
+		{
+			return i;
+		}
+	}
+	return -1;
 }
 
 
 void ConErase(Contact* pc)
 {
 	assert(pc);
+	assert(pc->sz > 0);
 
-	
+	char name[20] = { 0 };
+	printf("请输入要删除联系人姓名:>");
+	scanf("%s", name);
+
+	int pos = FindByName(pc, name);
+	if (pos != -1)
+	{
+		for (int i = pos; i < pc->sz - 1; i++)
+		{
+			pc->data[i] = pc->data[i + 1];
+		}
+	}
+	else
+	{
+		printf("未找到指定联系人\n");
+		return;
+	}
+	pc->sz--;
+}
+
+
+void menu2()
+{
+	printf("***************************\n");
+	printf("  1. name          2. sex  \n");
+	printf("  3. age           4. tele \n");
+	printf("  5. addr          0. exit \n");
+	printf("***************************\n");
+}
+
+
+void ModifyContact(PeoInfo* pc, int input)
+{
+	assert(pc);
+
+	if (input == Name)
+	{
+		printf("请输入姓名:>");
+		scanf("%s", pc->name);
+	}
+	else if (input == Sex)
+	{
+		printf("请输入性别:>");
+		scanf("%s", pc->sex);
+	}
+	else if (input == Age)
+	{
+		printf("请输入年龄:>");
+		scanf("%d", &(pc->age));
+	}
+	else if (input == Tele)
+	{
+		printf("请输入电话:>");
+		scanf("%s", pc->tele);
+	}
+	else if (input == Addr)
+	{
+		printf("请输入地址:>");
+		scanf("%s", pc->addr);
+	}
+}
+
+
+void ConModify(Contact* pc)
+{
+	assert(pc);
+	assert(pc->sz > 0);
+	char name[20] = { 0 };
+	printf("请输入要修改人联系人姓名:>");
+	scanf("%s", name);
+	int pos = FindByName(pc, name);
+	if (pos != -1)
+	{
+		int input = 0;
+		do
+		{
+			menu2();
+			printf("请选择要修改项:>");
+			scanf("%d", &input);
+			ModifyContact(&(pc->data[pos]), input);
+			
+		} while (input);
+
+	}
+	else
+	{
+		printf("未找到指定联系人\n");
+		return;
+	}
 }
