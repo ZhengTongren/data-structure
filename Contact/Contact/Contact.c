@@ -126,11 +126,11 @@ void ConErase(Contact* pc)
 
 void menu2()
 {
-	printf("***************************\n");
-	printf("  1. name          2. sex  \n");
-	printf("  3. age           4. tele \n");
-	printf("  5. addr          0. exit \n");
-	printf("***************************\n");
+	printf("---------------------------\n");
+	printf("  1. 姓名          2. 性别 \n");
+	printf("  3. 年龄          4. 电话 \n");
+	printf("  5. 地址          0. 退出 \n");
+	printf("---------------------------\n");
 }
 
 
