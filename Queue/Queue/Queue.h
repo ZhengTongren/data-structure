@@ -9,13 +9,22 @@
 
 typedef int QDataType;
 
+// Node ½Úµã
 typedef struct QueueNode
 {
-	QDataType* data;
-	int capacity;
-	int sz;
+	struct QueueNode* next;
+	QDataType data;
+}QNode;
+
+
+typedef struct Queue
+{
+	QNode* head;
+	QNode* tail;
+	int size;
 }Que;
 
+// QueuePush(QNode* head, QNode* tail, QDataType x);
 
 void QueueInit(Que* pq);
 
@@ -32,3 +41,5 @@ bool QueueEmpty(Que* pq);
 QDataType QueueFront(Que* pq);
 
 QDataType QueueBack(Que* pq);
+
+void QueuePrint(Que* pq);
