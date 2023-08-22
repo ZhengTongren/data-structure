@@ -33,3 +33,29 @@
 //}
 
 
+//int* findDisappearedNumbers(int* nums, int numsSize, int* returnSize) {
+//    int* copy = (int*)malloc(sizeof(int) * numsSize);
+//    for (int i = 0; i < numsSize; i++)
+//    {
+//        copy[i] = nums[i];
+//    }
+//
+//    for (int i = 0; i < numsSize; i++)
+//    {
+//        copy[nums[i] - 1] += numsSize;
+//    }
+//    int sz = 0;
+//    int* arr = (int*)malloc(sizeof(int) * numsSize);
+//    for (int i = 0; i < numsSize; i++)
+//    {
+//        if (copy[i] <= numsSize)
+//        {
+//            arr[sz] = i + 1;
+//            sz++;
+//        }
+//    }
+//    *returnSize = sz;
+//    return arr;
+//}
+
+
