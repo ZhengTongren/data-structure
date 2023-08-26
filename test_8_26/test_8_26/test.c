@@ -27,3 +27,44 @@
 //}
 
 
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main() {
+//    char str[32] = { 0 };
+//    scanf("%s", str);
+//    for (int i = strlen(str) - 1; i >= 0; i--)
+//    {
+//        printf("%c", str[i]);
+//    }
+//    return 0;
+//}
+
+//
+//#include <stdio.h>
+//#include <string.h>
+//
+//int main()
+//{
+//    char ch[10001] = { 0 };
+//    gets(ch);
+//
+//    int len = strlen(ch);
+//    for (int i = len - 1; i > 0; i--)
+//    {
+//        if (ch[i] == ' ')
+//        {
+//            for (int j = i + 1; ch[j] != '\0' && ch[j] != ' '; j++)
+//            {
+//                if ((ch[j] >= 'A' && ch[j] <= 'Z') || (ch[j] >= 'a' && ch[j] <= 'z'))
+//                {
+//                    printf("%c", ch[j]);
+//                }
+//            }
+//            printf(" ");
+//        }
+//    }
+//    return 0;
+//}
+
+
