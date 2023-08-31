@@ -111,6 +111,7 @@
 //
 //#include <stdio.h>
 //
+// µ•…Ìπ∑À„∑®
 //int main()
 //{
 //    int n = 0;
