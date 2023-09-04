@@ -1,79 +1,78 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+
 //
-//int main()
-//{
-//    long long n, k;
-//    scanf("%d %d", &n, &k);
-//    int count = 0;
-//    for (long long y = k + 1; y <= n; y++)
-//    {
-//        for (long long x = k; x <= n; x++)
-//        {
-//            int rem =
-//        }
-//    }
-//    return 0;
+//typedef struct {
+//    int* a;
+//    int front;
+//    int rear;
+//    int k;
+//} MyCircularQueue;
+//
+//
+//MyCircularQueue* myCircularQueueCreate(int k) {
+//    MyCircularQueue* obj = (MyCircularQueue*)malloc(sizeof(MyCircularQueue));
+//    obj->front = obj->rear = 0;
+//    obj->k = k;
+//    obj->a = (int*)malloc(sizeof(int) * (obj->k + 1));
+//    return obj;
 //}
-
-
-//int main()
-//{
-//    long long n, k;
-//    scanf("%lld %lld", &n, &k);
-//    long long count = 0;
-//    for (long long y = k + 1; y <= n; y++)
-//    {
-//        long long rem = (n % y < k) ? 0 : (n % y - k + 1);
-//        count += (n / y) * (y - k) + rem;
-//    }
-//    printf("%lld\n", count);
-//    return 0;
+//
+//bool myCircularQueueIsEmpty(MyCircularQueue* obj) {
+//    return obj->front == obj->rear;
 //}
-
 //
-//#include <stdio.h>
+//bool myCircularQueueIsFull(MyCircularQueue* obj) {
+//    return (obj->rear + 1) % (obj->k + 1) == obj->front;
+//}
 //
-//int main()
-//{
-//    long long n, k;
-//    scanf("%lld %lld", &n, &k);
-//    long long count = 0;
-//    if (k == 0)
-//    {
-//        count = n * n;
-//    }
+//bool myCircularQueueEnQueue(MyCircularQueue* obj, int value) {
+//    if (myCircularQueueIsFull(obj))
+//        return false;
 //    else
 //    {
-//        for (long long y = k + 1; y <= n; y++)
-//        {
-//            long long rem = (n % y < k) ? 0 : (n % y - k + 1);
-//            count += (n / y) * (y - k) + rem;
-//        }
+//        obj->a[obj->rear] = value;
+//        obj->rear++;
+//        obj->rear %= (obj->k + 1);
+//        return true;
 //    }
-//    printf("%lld\n", count);
-//    return 0;
 //}
-
 //
-//int findPeakElement(int* nums, int numsLen) {
-//    // write code here
-//    int left = 0;
-//    int right = numsLen - 1;
-//    while (left < right)
+//bool myCircularQueueDeQueue(MyCircularQueue* obj) {
+//    if (myCircularQueueIsEmpty(obj))
+//        return false;
+//    else
 //    {
-//        int mid = (left + right) / 2;
-//        if (nums[mid + 1] > nums[mid])
-//        {
-//            left = mid + 1;
-//        }
-//        else if (nums[mid] > nums[mid + 1])
-//        {
-//            right = mid;
-//        }
+//        obj->front++;
+//        obj->front %= (obj->k + 1);
+//        return true;
 //    }
-//    return left;
 //}
-
-
+//
+//int myCircularQueueFront(MyCircularQueue* obj) {
+//    if (myCircularQueueIsEmpty(obj))
+//        return -1;
+//    else
+//        return obj->a[obj->front];
+//}
+//
+//int myCircularQueueRear(MyCircularQueue* obj) {
+//    if (myCircularQueueIsEmpty(obj))
+//        return -1;
+//    else
+//        return obj->a[(obj->rear + obj->k) % (obj->k + 1)];
+//    // 取队尾时 取rear下标的前一个元素
+//    // 防止 数组越界的情况
+//}
+//
+//
+//
+//void myCircularQueueFree(MyCircularQueue* obj) {
+//    free(obj->a);
+//    free(obj);
+//}
