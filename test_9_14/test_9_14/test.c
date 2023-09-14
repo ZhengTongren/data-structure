@@ -21,3 +21,10 @@
 //};
 
 
+typedef int DataType;
+
+struct Node
+{
+	DataType val;
+	int parent;
+};
