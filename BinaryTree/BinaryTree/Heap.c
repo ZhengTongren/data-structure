@@ -162,3 +162,28 @@ void HeapPrint(HP* php)
 	}
 	printf("\n");
 }
+
+
+void HeapSort(HPDataType* a, int n)
+{
+	// 建堆
+	//for (int i = 0; i < n; i++)
+	//{
+	//	// 排升序建大堆 排降序建小堆
+	//	AdjustUp(a, i);
+	//}
+
+	for (int i = (n - 1 - 1) / 2; i >= 0; i--)
+	{
+		AdjustDown(a, n, i);
+	}
+
+	int end = n - 1;
+	while (end > 0)
+	{
+		// 大堆建好 a[0]最大，堆顶向后调整，剩余数据向下调整
+		Swap(&a[0], &a[end]);
+		AdjustDown(a, end, 0);
+		end--;
+	}
+}

@@ -75,23 +75,7 @@ void test2()
 }
 
 
-void HeapSort(HPDataType* a, int n)
-{
-	// ½¨¶Ñ
-	for (int i = 0; i < n; i++)
-	{
-		// ÅÅÉýÐò½¨´ó¶Ñ ÅÅ½µÐò½¨Ð¡¶Ñ
-		AdjustUp(a, i);
-	}
 
-	int end = n - 1;
-	while (end > 0)
-	{
-		AdjustDown(a, end, 0);
-		Swap(&a[0], &a[end]);
-		end--;
-	}
-}
 
 
 void test3()

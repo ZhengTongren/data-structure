@@ -28,3 +28,5 @@ void AdjustUp(HPDataType* a, int child);
 void AdjustDown(HPDataType* a, int n, int parent);
 
 void HeapPrint(HP* php);
+
+void HeapSort(HPDataType* a, int n);
