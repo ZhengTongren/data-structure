@@ -77,21 +77,90 @@ void test2()
 
 
 
+//
+//void test3()
+//{
+//	int a[] = { 2,3,5,7,4,6,8 };
+//	HeapSort(a, sizeof(a) / sizeof(int));
+//	for (int i = 0; i < sizeof(a) / sizeof(int); i++)
+//	{
+//		printf("%d ", a[i]);
+//	}
+//}
+//
 
-void test3()
+
+void PrintTopK(const char* filename, int k)
 {
-	int a[] = { 2,3,5,7,4,6,8 };
-	HeapSort(a, sizeof(a) / sizeof(int));
-	for (int i = 0; i < sizeof(a) / sizeof(int); i++)
+	FILE* fout = fopen(filename, "r");
+	if (fout == NULL)
 	{
-		printf("%d ", a[i]);
+		perror("fopen");
+		exit(-1);
 	}
+
+	int* minheap = (int*)malloc(sizeof(int) * k);
+	if (minheap == NULL)
+	{
+		perror("malloc");
+		exit(-1);
+	}
+
+	for (int i = 0; i < k; i++)
+	{
+		fscanf(fout, "%d", &minheap[i]);
+	}
+
+	for (int i = (k - 2) / 2; i >= 0; --i)
+	{
+		AdjustDown(minheap, k, i);
+	}
+
+	int x = 0;
+	while (fscanf(fout, "%d", &x) != EOF)
+	{
+		if (minheap[0] < x)
+		{
+			minheap[0] = x;
+			AdjustDown(minheap, k, 0);
+		}
+	}
+
+	for (int i = 0; i < k; i++)
+	{
+		printf("%d\n", minheap[i]);
+	}
+
+	free(minheap);
+	fclose(fout);
 }
 
+void CreateData()
+{
+	int n = 1000;
+	srand(time(NULL));
+	const char* file = "data.txt";
+	FILE* fin = fopen(file, "w");
+
+	if (fin == NULL)
+	{
+		perror("fopen");
+		exit(-1);
+	}
+
+	for (int i = 0; i < n; i++)
+	{
+		int x = rand() % 100 + i;
+		fprintf(fin, "%d\n", x);
+	}
+	fclose(fin);
+}
 
 int main()
 {
 	//test2();
-	test3();
+	//test3();
+	//CreateData();
+	PrintTopK("data.txt", 5);
 	return 0;
 }

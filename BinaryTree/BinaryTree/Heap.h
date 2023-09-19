@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
+#include <time.h>
 
 
 typedef int HPDataType;
@@ -30,3 +31,5 @@ void AdjustDown(HPDataType* a, int n, int parent);
 void HeapPrint(HP* php);
 
 void HeapSort(HPDataType* a, int n);
+
+void PrintTopK(const char* filename, int k)
