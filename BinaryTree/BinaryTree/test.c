@@ -90,6 +90,52 @@ void test2()
 //
 
 
+//void PrintTopK(const char* filename, int k)
+//{
+//	FILE* fout = fopen(filename, "r");
+//	if (fout == NULL)
+//	{
+//		perror("fopen");
+//		exit(-1);
+//	}
+//
+//	int* minheap = (int*)malloc(sizeof(int) * k);
+//	if (minheap == NULL)
+//	{
+//		perror("malloc");
+//		exit(-1);
+//	}
+//
+//	for (int i = 0; i < k; i++)
+//	{
+//		fscanf(fout, "%d", &minheap[i]);
+//	}
+//
+//	for (int i = (k - 2) / 2; i >= 0; --i)
+//	{
+//		AdjustDown(minheap, k, i);
+//	}
+//
+//	int x = 0;
+//	while (fscanf(fout, "%d", &x) != EOF)
+//	{
+//		if (minheap[0] < x)
+//		{
+//			minheap[0] = x;
+//			AdjustDown(minheap, k, 0);
+//		}
+//	}
+//
+//	for (int i = 0; i < k; i++)
+//	{
+//		printf("%d\n", minheap[i]);
+//	}
+//
+//	free(minheap);
+//	fclose(fout);
+//}
+
+
 void PrintTopK(const char* filename, int k)
 {
 	FILE* fout = fopen(filename, "r");
@@ -111,15 +157,16 @@ void PrintTopK(const char* filename, int k)
 		fscanf(fout, "%d", &minheap[i]);
 	}
 
-	for (int i = (k - 2) / 2; i >= 0; --i)
+	for (int i = (k - 1 - 1) / 2; i >= 0; i--)
 	{
 		AdjustDown(minheap, k, i);
 	}
 
+	//for (int i = )
 	int x = 0;
 	while (fscanf(fout, "%d", &x) != EOF)
 	{
-		if (minheap[0] < x)
+		if (x > minheap[0])
 		{
 			minheap[0] = x;
 			AdjustDown(minheap, k, 0);
@@ -130,9 +177,6 @@ void PrintTopK(const char* filename, int k)
 	{
 		printf("%d\n", minheap[i]);
 	}
-
-	free(minheap);
-	fclose(fout);
 }
 
 void CreateData()
