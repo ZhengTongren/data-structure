@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <stdbool.h>
+#include <time.h>
 
 
 typedef int HPDataType;
@@ -32,3 +33,5 @@ HPDataType HeapTop(HP* php);
 bool HeapEmpty(HP* php);
 
 void HeapSort(HPDataType* a, int n);
+void CreateNData();
+void PrintTopK(const char* filename, int k);

@@ -39,9 +39,16 @@ void test2()
 }
 
 
+void test3()
+{
+	//CreateNData();
+	PrintTopK("data.txt", 10);
+}
+
+
 int main()
 {
-	test2();
+	test3();
 
 	return 0;
 }

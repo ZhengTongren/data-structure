@@ -36,7 +36,7 @@ void AdjustUp(HPDataType* a, int child)
 	int parent = (child - 1) / 2;
 	while (child > 0)
 	{
-		if (a[parent] < a[child])
+		if (a[parent] > a[child])
 		{
 			Swap(&a[parent], &a[child]);
 			// 换到根就终止
@@ -129,12 +129,12 @@ void AdjustDown(HPDataType* a, int n, int parent)
 	while (child < n)
 	{
 		// 找到最小的孩子，防止数组越界访问
-		if (child + 1 < n && a[child + 1] > a[child])
+		if (child + 1 < n && a[child + 1] < a[child])
 		{
 			child++;
 		}
 
-		if (a[parent] < a[child])
+		if (a[parent] > a[child])
 		{
 			Swap(&a[parent], &a[child]);
 			// 换到叶子就终止
@@ -195,5 +195,63 @@ void HeapSort(HPDataType* a, int n)
 		// 对前 end 个数据进行向下调整
 		AdjustDown(a, end, 0);
 		end--;
+	}
+}
+
+
+void CreateNData()
+{
+	int n = 100;
+	FILE* fout = fopen("data.txt", "w");
+
+	srand(time(NULL));
+	for (int i = 0; i < n; i++)
+	{
+		int x = (rand() + i) % 30;
+		fprintf(fout, "%d\n", x);
+	}
+	fclose(fout);
+}
+
+
+void PrintTopK(const char* filename, int k)
+{
+	assert(filename);
+
+	FILE* fout = fopen("data.txt", "r");
+	if (fout == NULL)
+	{
+		perror("fopen");
+		exit(-1);
+	}
+
+	int* minheap = (int*)malloc(sizeof(int) * k);
+	if (minheap == NULL)
+	{
+		perror("malloc");
+		exit(-1);
+	}
+	for (int i = 0; i < k; i++)
+	{
+		fscanf(fout, "%d", &minheap[i]);
+	}
+	for (int i = (k - 1 - 1) / 2; i >= 0; i--)
+	{
+		AdjustDown(minheap, k, i);
+	}
+
+	int x = 0;
+	while (fscanf(fout, "%d", &x) != EOF)
+	{
+		if (x > minheap[0])
+		{
+			minheap[0] = x;
+			AdjustDown(minheap, k, 0);
+		}
+	}
+
+	for (int i = 0; i < k; i++)
+	{
+		printf("%d\n", minheap[i]);
 	}
 }
