@@ -164,6 +164,7 @@ void HeapPop(HP* php)
 HPDataType HeapTop(HP* php)
 {
 	assert(php);
+	assert(php->size > 0);
 
 	return php->a[0];
 }
