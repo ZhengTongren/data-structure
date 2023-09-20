@@ -192,7 +192,8 @@ void HeapSort(HPDataType* a, int n)
 	while (end)
 	{
 		Swap(&a[0], &a[end]);
-		end--;
+		// 对前 end 个数据进行向下调整
 		AdjustDown(a, end, 0);
+		end--;
 	}
 }
