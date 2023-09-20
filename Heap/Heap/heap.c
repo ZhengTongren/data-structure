@@ -36,7 +36,7 @@ void AdjustUp(HPDataType* a, int child)
 	int parent = (child - 1) / 2;
 	while (child > 0)
 	{
-		if (a[parent] > a[child])
+		if (a[parent] < a[child])
 		{
 			Swap(&a[parent], &a[child]);
 			// 换到根就终止
@@ -129,12 +129,12 @@ void AdjustDown(HPDataType* a, int n, int parent)
 	while (child < n)
 	{
 		// 找到最小的孩子，防止数组越界访问
-		if (child + 1 < n && a[child + 1] < a[child])
+		if (child + 1 < n && a[child + 1] > a[child])
 		{
 			child++;
 		}
 
-		if (a[parent] > a[child])
+		if (a[parent] < a[child])
 		{
 			Swap(&a[parent], &a[child]);
 			// 换到叶子就终止
@@ -167,4 +167,32 @@ HPDataType HeapTop(HP* php)
 	assert(php->size > 0);
 
 	return php->a[0];
+}
+
+
+bool HeapEmpty(HP* php)
+{
+	assert(php);
+
+	return php->size == 0;
+}
+
+
+void HeapSort(HPDataType* a, int n)
+{
+	assert(a);
+
+	// 建堆; 排升序 建大堆
+	for (int i = 0; i < n; i++)
+	{
+		AdjustUp(a, i);
+	}
+
+	int end = n - 1;
+	while (end)
+	{
+		Swap(&a[0], &a[end]);
+		end--;
+		AdjustDown(a, end, 0);
+	}
 }

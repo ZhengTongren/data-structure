@@ -15,16 +15,33 @@ void test1()
 	}
 	HeapPrint(&heap);
 
-	HeapPop(&heap);
-	HeapPrint(&heap);
+	/*HeapPop(&heap);
+	HeapPrint(&heap);*/
+
+	while (!HeapEmpty(&heap))
+	{
+		printf("%d ", HeapTop(&heap));
+		HeapPop(&heap);
+	}
 
 	HeapDestroy(&heap);
 }
 
 
+void test2()
+{
+	int a[] = { 12, 2, 5, 84, 32, 14, 99, 56 };
+	HeapSort(a, sizeof(a) / sizeof(int));
+	for (int i = 0; i < sizeof(a) / sizeof(int); i++)
+	{
+		printf("%d ", a[i]);
+	}
+}
+
+
 int main()
 {
-	test1();
+	test2();
 
 	return 0;
 }

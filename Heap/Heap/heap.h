@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <stdbool.h>
 
 
 typedef int HPDataType;
@@ -28,3 +29,6 @@ void HeapPop(HP* php);
 
 void HeapPrint(HP* php);
 HPDataType HeapTop(HP* php);
+bool HeapEmpty(HP* php);
+
+void HeapSort(HPDataType* a, int n);
