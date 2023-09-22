@@ -117,7 +117,7 @@ void AdjustDown(HPDataType* a, int n, int parent)
 	assert(a);
 
 	int child = parent * 2 + 1;
-	while (child > n)
+	while (child < n)
 	{
 		if (child + 1 < n && a[child + 1] < a[child])
 		{
@@ -190,7 +190,7 @@ void HeapSort(HPDataType* a, int n)
 {
 	assert(a);
 
-	for (int i = 0; i < n; i++)
+	for (int i = (n - 1 - 1) / 2; i < n; i++)
 	{
 		AdjustDown(a, n, i);
 	}
@@ -265,10 +265,56 @@ void HeapSort(HPDataType* a, int n)
 //}
 
 
+//
+//void PrintTopK(const char* filename, int k)
+//{
+//	FILE* fout = fopen(filename, "r");
+//	if (fout == NULL)
+//	{
+//		perror("fopen");
+//		exit(-1);
+//	}
+//
+//	int* minheap = (int*)malloc(sizeof(int) * k);
+//	if (minheap == NULL)
+//	{
+//		perror("malloc");
+//		exit(-1);
+//	}
+//
+//	for (int i = 0; i < k; i++)
+//	{
+//		fscanf(fout, "%d", &minheap[i]);
+//	}
+//
+//	for (int i = (k - 1 - 1) / 2; i >= 0; i--)
+//	{
+//		AdjustDown(minheap, k, i);
+//	}
+//
+//	//for (int i = )
+//	int x = 0;
+//	while (fscanf(fout, "%d", &x) != EOF)
+//	{
+//		if (x > minheap[0])
+//		{
+//			minheap[0] = x;
+//			AdjustDown(minheap, k, 0);
+//		}
+//	}
+//
+//	for (int i = 0; i < k; i++)
+//	{
+//		printf("%d\n", minheap[i]);
+//	}
+//}
+
 
 void PrintTopK(const char* filename, int k)
 {
-	FILE* fout = fopen(filename, "r");
+	assert(filename);
+
+	FILE* fout = fopen("data.txt", "r");
 	if (fout == NULL)
 	{
 		perror("fopen");
@@ -287,12 +333,11 @@ void PrintTopK(const char* filename, int k)
 		fscanf(fout, "%d", &minheap[i]);
 	}
 
-	for (int i = (k - 1 - 1) / 2; i >= 0; i--)
+	for (int i = 0; i < k; i++)
 	{
 		AdjustDown(minheap, k, i);
 	}
 
-	//for (int i = )
 	int x = 0;
 	while (fscanf(fout, "%d", &x) != EOF)
 	{
@@ -305,9 +350,10 @@ void PrintTopK(const char* filename, int k)
 
 	for (int i = 0; i < k; i++)
 	{
-		printf("%d\n", minheap[i]);
+		printf("%d ", minheap[i]);
 	}
 }
+
 
 void CreateData()
 {

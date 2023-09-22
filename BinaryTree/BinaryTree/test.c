@@ -154,7 +154,7 @@ int main()
 	//test2();
 	//test3();
 	//CreateData();
-	//PrintTopK("data.txt", 5);
-	test();
+	PrintTopK("data.txt", 5);
+	//test();
 	return 0;
 }
