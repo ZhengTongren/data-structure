@@ -112,79 +112,30 @@ bool HeapEmpty(HP* php)
 }
 
 
-//void AdjustDown(HPDataType* a, int n, int parent)
-//{
-//	assert(a);
-//
-//	while (parent < n)
-//	{
-//		int child = parent * 2 + 1;
-//		if (child + 1 < n && a[child] > a[child + 1])
-//		{
-//			child++;
-//		}
-//		if (a[child] > a[parent])
-//		{
-//			Swap(&a[child], &a[parent]);
-//			parent = child;
-//		}
-//		else
-//		{
-//			break;
-//		}
-//	}
-//}
+void AdjustDown(HPDataType* a, int n, int parent)
+{
+	assert(a);
 
-//
-//void AdjustDown(HPDataType* a, int n, int parent)
-//{
-//	assert(a);
-//
-//	int child = parent * 2 + 1;
-//
-//	while (child < n)
-//	{
-//		if (child + 1 < n && a[child + 1] < a[child])
-//		{
-//			child++;
-//		}
-//
-//		if (a[child] < a[parent])
-//		{
-//			Swap(&a[child], &a[parent]);
-//			parent = child;
-//			child = parent * 2 + 1;
-//		}
-//		else
-//		{
-//			break;
-//		}
-//	}
-//}
+	int child = parent * 2 + 1;
+	while (child > n)
+	{
+		if (child + 1 < n && a[child + 1] < a[child])
+		{
+			child++;
+		}
 
-//
-//void AdjustDown(HPDataType* a, int n, int parent)
-//{
-//	assert(a);
-//
-//	int child = parent * 2 + 1;
-//	while (parent--)
-//	{
-//		if (child + 1 < n && a[child + 1] < a[child])
-//		{
-//			child++;
-//		}
-//
-//		if (a[child] < a[parent])
-//		{
-//			Swap(&a[child], &a[parent]);
-//		}
-//		else
-//		{
-//			break;
-//		}
-//	}
-//}
+		if (a[parent] > a[child])
+		{
+			Swap(&a[parent], &a[child]);
+			parent = child;
+			child = parent * 2 + 1;
+		}
+		else
+		{
+			break;
+		}
+	}
+}
 
 
 void HeapPop(HP* php)
@@ -235,6 +186,86 @@ void HeapPrint(HP* php)
 //}
 
 
+void HeapSort(HPDataType* a, int n)
+{
+	assert(a);
+
+	for (int i = 0; i < n; i++)
+	{
+		AdjustDown(a, n, i);
+	}
+
+	int end = n - 1;
+	while (end > 0)
+	{
+		Swap(&a[0], &a[end]);
+		AdjustDown(a, end, 0);
+		end--;
+	}
+}
+
+//
+//void PrintTopK(const char* filename, int k)
+//{
+//	FILE* fout = fopen(filename, "r");
+//	if (fout == NULL)
+//	{
+//		perror("fopen");
+//		exit(-1);
+//	}
+//
+//	int* minheap = (int*)malloc(sizeof(int) * k);
+//	if (minheap == NULL)
+//	{
+//		perror("malloc");
+//		exit(-1);
+//	}
+//
+//	for (int i = 0; i < k; i++)
+//	{
+//		fscanf(fout, "%d", &minheap[i]);
+//	}
+//
+//	for (int i = (k - 1 - 1) / 2; i >= 0; i--)
+//	{
+//		AdjustDown(minheap, k, i);
+//	}
+//
+//	//for (int i = )
+//	int x = 0;
+//	while (fscanf(fout, "%d", &x) != EOF)
+//	{
+//		if (x > minheap[0])
+//		{
+//			minheap[0] = x;
+//			AdjustDown(minheap, k, 0);
+//		}
+//	}
+//
+//	for (int i = 0; i < k; i++)
+//	{
+//		printf("%d\n", minheap[i]);
+//	}
+//}
+
+
+//void HeapSort(HPDataType* a, int n)
+//{
+//	// ½¨¶Ñ
+//	for (int i = 0; i < n; i++)
+//	{
+//		AdjustDown(a, n, i);
+//	}
+//
+//	int end = n - 1;
+//	while (end)
+//	{
+//		AdjustDown(a, n, end);
+//	}
+//}
+
+
+
 void PrintTopK(const char* filename, int k)
 {
 	FILE* fout = fopen(filename, "r");
@@ -278,20 +309,24 @@ void PrintTopK(const char* filename, int k)
 	}
 }
 
+void CreateData()
+{
+	int n = 1000;
+	srand(time(NULL));
+	const char* file = "data.txt";
+	FILE* fin = fopen(file, "w");
 
-//void HeapSort(HPDataType* a, int n)
-//{
-//	// ½¨¶Ñ
-//	for (int i = 0; i < n; i++)
-//	{
-//		AdjustDown(a, n, i);
-//	}
-//
-//	int end = n - 1;
-//	while (end)
-//	{
-//		AdjustDown(a, n, end);
-//	}
-//}
+	if (fin == NULL)
+	{
+		perror("fopen");
+		exit(-1);
+	}
 
+	for (int i = 0; i < n; i++)
+	{
+		int x = rand() % 100 + i;
+		fprintf(fin, "%d\n", x);
+	}
+	fclose(fin);
+}
 

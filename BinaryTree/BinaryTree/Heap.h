@@ -32,4 +32,4 @@ void HeapPrint(HP* php);
 
 void HeapSort(HPDataType* a, int n);
 
-void PrintTopK(const char* filename, int k);
+//void PrintTopK(const char* filename, int k);
