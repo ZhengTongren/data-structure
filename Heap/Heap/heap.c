@@ -183,9 +183,14 @@ void HeapSort(HPDataType* a, int n)
 	assert(a);
 
 	// Ω®∂—; ≈≈…˝–Ú Ω®¥Û∂—
-	for (int i = 0; i < n; i++)
+	/*for (int i = 0; i < n; i++)
 	{
 		AdjustUp(a, i);
+	}*/
+
+	for (int i = (n - 2) / 2; i >= 0; i--)
+	{
+		AdjustDown(a, n, i);
 	}
 
 	int end = n - 1;
