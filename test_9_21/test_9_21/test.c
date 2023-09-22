@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 
 typedef int BTDataType;
@@ -67,6 +68,70 @@ void PostOrder(BTNode* root)
 }
 
 
+int TreeLeafSize(BTNode* root)
+{
+	if (root == NULL)
+	{
+		return 0;
+	}
+	else if (root->left != root->right)
+	{
+		return TreeLeafSize(root->left) + TreeLeafSize(root->right);
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+
+int BinaryTreeLevelKSize(BTNode* root, int k)
+{
+	//assert(root);
+	assert(k > 0);
+
+	if (root == NULL)
+	{
+		return 0;
+	}
+	else if (k == 1)
+	{
+		return 1;
+	}
+	else
+	{
+		return BinaryTreeLevelKSize(root->left, k - 1) + BinaryTreeLevelKSize(root->right, k - 1);
+	}
+}
+
+//
+//BTNode* BinaryTreeFind(BTNode* root, BTDataType x)
+//{
+//	if (root->val == x)
+//	{
+//		return root;
+//	}
+//	if (x > root->val)
+//	{
+//		return BinaryTreeFind(root->right, x);
+//	}
+//	if (x < root->val)
+//	{
+//		return BinaryTreeFind(root->left, x);
+//	}
+//}
+
+
+BTNode* BinaryTreeFind(BTNode* root, BTDataType x)
+{
+	if (root->val == x)
+	{
+		return root;
+	}
+	if (root->left)
+	//return BinaryTreeFind(root->left, x) || BinaryTreeFind(root->right, x);
+}
+
 int main()
 {
 	BTNode* n1 = BTBuyNode(1);
@@ -82,11 +147,20 @@ int main()
 	n4->left = n5;
 	n4->right = n6;
 
-	PrevOrder(n1);
-	printf("\n");
-	InOrder(n1);
-	printf("\n");
-	PostOrder(n1);
+	//PrevOrder(n1);
+	//printf("\n");
+	//InOrder(n1);
+	//printf("\n");
+	//PostOrder(n1);
+	//printf("\n");
 
+
+	/*int size = TreeLeafSize(n1);
+	printf("%d\n", size);*/
+
+	/*int sz = BinaryTreeLevelKSize(n1, 3);
+	printf("%d", sz);*/
+
+	printf("%d", BinaryTreeFind(n1, 3)->val);
 	return 0;
 }
