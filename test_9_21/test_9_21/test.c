@@ -85,7 +85,7 @@ int TreeLeafSize(BTNode* root)
 }
 
 
-int BinaryTreeLevelKSize(BTNode* root, int k)
+int TreeLevelKSize(BTNode* root, int k)
 {
 	//assert(root);
 	assert(k > 0);
@@ -100,7 +100,7 @@ int BinaryTreeLevelKSize(BTNode* root, int k)
 	}
 	else
 	{
-		return BinaryTreeLevelKSize(root->left, k - 1) + BinaryTreeLevelKSize(root->right, k - 1);
+		return TreeLevelKSize(root->left, k - 1) + TreeLevelKSize(root->right, k - 1);
 	}
 }
 
@@ -122,15 +122,64 @@ int BinaryTreeLevelKSize(BTNode* root, int k)
 //}
 
 
-BTNode* BinaryTreeFind(BTNode* root, BTDataType x)
+// 只能走到左子树(return了)，找不到右子树
+//BTNode* TreeFind(BTNode* root, BTDataType x)
+//{
+//	if (root == NULL)
+//	{
+//		return NULL;
+//	}
+//	if (root->val == x)
+//	{
+//		return root;
+//	}
+//	
+//	return TreeFind(root->left, x);
+//	return TreeFind(root->right, x);
+//}
+
+
+BTNode* TreeFind(BTNode* root, BTDataType x)
 {
+	if (root == NULL)
+	{
+		return NULL;
+	}
 	if (root->val == x)
 	{
 		return root;
 	}
-	if (root->left)
-	//return BinaryTreeFind(root->left, x) || BinaryTreeFind(root->right, x);
+
+	BTNode* ret = NULL;
+	ret = TreeFind(root->left, x);
+	if (ret)
+	{
+		return ret;
+	}
+
+	ret = TreeFind(root->right, x);
+	if (ret)
+	{
+		return ret;
+	}
+	return NULL;
 }
+
+
+void TreeDestroy(BTNode* root)
+{
+	if (root == NULL)
+		return;
+
+	if (root->left)
+		TreeDestroy(root->left);
+
+	if (root->right)
+		TreeDestroy(root->right);
+
+	free(root);
+}
+
 
 int main()
 {
@@ -161,6 +210,10 @@ int main()
 	/*int sz = BinaryTreeLevelKSize(n1, 3);
 	printf("%d", sz);*/
 
-	printf("%d", BinaryTreeFind(n1, 3)->val);
+	//printf("%d", TreeFind(n1, 3)->val);
+	/*BTNode* p = TreeFind(n1, 6);
+	printf("%d\n", p->val);*/
+
+	TreeDestroy(n1);
 	return 0;
 }
