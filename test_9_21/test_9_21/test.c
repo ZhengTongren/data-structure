@@ -14,6 +14,9 @@ typedef struct BinaryTreeNode
 }BTNode;
 
 
+#include "Queue.h"
+
+
 BTNode* BTBuyNode(BTDataType x)
 {
 	BTNode* tmp = (BTNode*)malloc(sizeof(BTNode));
@@ -181,6 +184,33 @@ void TreeDestroy(BTNode* root)
 }
 
 
+//void LevelOrder(BTNode* root)
+//{
+//	Que q;
+//	QueueInit(&q);
+//	
+//	if (root)
+//		QueuePush(&q, root);
+//
+//	while (!QueueEmpty(&q))
+//	{
+//		BTNode* front = QueueFront(&q);
+//		printf("%d ", front->val);
+//
+//		if (front->left)
+//			QueuePush(&q, front->left);
+//
+//		if (root->right)
+//			QueuePush(&q, front->right);
+//
+//		QueuePop(&q);
+//	}
+//	printf("\n");
+//
+//	QueueDestroy(&q);
+//}
+
+
 int main()
 {
 	BTNode* n1 = BTBuyNode(1);
@@ -213,6 +243,8 @@ int main()
 	//printf("%d", TreeFind(n1, 3)->val);
 	/*BTNode* p = TreeFind(n1, 6);
 	printf("%d\n", p->val);*/
+
+	LevelOrder(n1);
 
 	TreeDestroy(n1);
 	return 0;
