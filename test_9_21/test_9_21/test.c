@@ -211,6 +211,32 @@ void TreeDestroy(BTNode* root)
 //}
 
 
+// ²ãÐò
+void LevelOrder(BTNode* root)
+{
+	Que q;
+	QueueInit(&q);
+
+	if (root)
+		QueuePush(&q, root);
+
+	while (!QueueEmpty(&q))
+	{
+		BTNode* front = QueueFront(&q);
+		printf("%d ", front->val);
+
+		if (front->left)
+			QueuePush(&q, front->left);
+
+		if (front->right)
+			QueuePush(&q, front->right);
+		QueuePop(&q);
+	}
+
+	QueueDestroy(&q);
+}
+
+
 int main()
 {
 	BTNode* n1 = BTBuyNode(1);
