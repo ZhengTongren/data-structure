@@ -71,20 +71,36 @@ void PostOrder(BTNode* root)
 }
 
 
+//int TreeLeafSize(BTNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return 0;
+//	}
+//	else if (root->left != root->right)
+//	{
+//		return TreeLeafSize(root->left) + TreeLeafSize(root->right);
+//	}
+//	else
+//	{
+//		return 1;
+//	}
+//}
+
+
 int TreeLeafSize(BTNode* root)
 {
 	if (root == NULL)
 	{
 		return 0;
 	}
-	else if (root->left != root->right)
+
+	if (root->left != root->right)
 	{
 		return TreeLeafSize(root->left) + TreeLeafSize(root->right);
 	}
-	else
-	{
-		return 1;
-	}
+
+	return 1;
 }
 
 
@@ -141,16 +157,44 @@ int TreeLevelKSize(BTNode* root, int k)
 //	return TreeFind(root->right, x);
 //}
 
+//
+//BTNode* TreeFind(BTNode* root, BTDataType x)
+//{
+//	if (root == NULL)
+//	{
+//		return NULL;
+//	}
+//	if (root->val == x)
+//	{
+//		return root;
+//	}
+//
+//	BTNode* ret = NULL;
+//	ret = TreeFind(root->left, x);
+//	if (ret)
+//	{
+//		return ret;
+//	}
+//
+//	ret = TreeFind(root->right, x);
+//	if (ret)
+//	{
+//		return ret;
+//	}
+//	return NULL;
+//}
+
 
 BTNode* TreeFind(BTNode* root, BTDataType x)
 {
 	if (root == NULL)
 	{
-		return NULL;
+		return;
 	}
-	if (root->val == x)
+
+	if (root->val != x)
 	{
-		return root;
+		return;
 	}
 
 	BTNode* ret = NULL;
@@ -168,17 +212,29 @@ BTNode* TreeFind(BTNode* root, BTDataType x)
 	return NULL;
 }
 
+//
+//void TreeDestroy(BTNode* root)
+//{
+//	if (root == NULL)
+//		return;
+//
+//	if (root->left)
+//		TreeDestroy(root->left);
+//
+//	if (root->right)
+//		TreeDestroy(root->right);
+//
+//	free(root);
+//}
+
 
 void TreeDestroy(BTNode* root)
 {
 	if (root == NULL)
 		return;
 
-	if (root->left)
-		TreeDestroy(root->left);
-
-	if (root->right)
-		TreeDestroy(root->right);
+	TreeDestroy(root->left);
+	TreeDestroy(root->right);
 
 	free(root);
 }
@@ -220,6 +276,31 @@ int TreeSize(BTNode* root)
 
 
 // ²ãÐò
+//void LevelOrder(BTNode* root)
+//{
+//	Que q;
+//	QueueInit(&q);
+//
+//	if (root)
+//		QueuePush(&q, root);
+//
+//	while (!QueueEmpty(&q))
+//	{
+//		BTNode* front = QueueFront(&q);
+//		printf("%d ", front->val);
+//
+//		if (front->left)
+//			QueuePush(&q, front->left);
+//
+//		if (front->right)
+//			QueuePush(&q, front->right);
+//		QueuePop(&q);
+//	}
+//
+//	QueueDestroy(&q);
+//}
+
+
 void LevelOrder(BTNode* root)
 {
 	Que q;
@@ -238,11 +319,54 @@ void LevelOrder(BTNode* root)
 
 		if (front->right)
 			QueuePush(&q, front->right);
+
 		QueuePop(&q);
 	}
+	printf("\n");
 
 	QueueDestroy(&q);
 }
+
+
+//int TreeComplete(BTNode* root)
+//{
+//	Que q;
+//	QueueInit(&q);
+//
+//	if (root)
+//		QueuePush(&q, root);
+//
+//	while (!QueueEmpty(&q))
+//	{
+//		BTNode* front = QueueFront(&q);
+//		if (front == NULL)
+//		{
+//			break;
+//		}
+//		QueuePush(&q, front->left);
+//		QueuePush(&q, front->right);
+//		QueuePop(&q);
+//	}
+//
+//	while (!QueueEmpty(&q))
+//	{
+//		BTNode* front = QueueFront(&q);
+//		/*QueuePush(&q, front->left);
+//		QueuePush(&q, front->right);*/
+//
+//
+//		if (front != NULL)
+//		{
+//			QueueDestroy(&q);
+//			return 0;
+//		}
+//		QueuePop(&q);
+//	}
+//
+//
+//	QueueDestroy(&q);
+//	return 1;
+//}
 
 
 int TreeComplete(BTNode* root)
@@ -260,6 +384,7 @@ int TreeComplete(BTNode* root)
 		{
 			break;
 		}
+
 		QueuePush(&q, front->left);
 		QueuePush(&q, front->right);
 		QueuePop(&q);
@@ -268,21 +393,43 @@ int TreeComplete(BTNode* root)
 	while (!QueueEmpty(&q))
 	{
 		BTNode* front = QueueFront(&q);
-		/*QueuePush(&q, front->left);
-		QueuePush(&q, front->right);*/
-
+		QueuePop(&q);
 
 		if (front != NULL)
 		{
 			QueueDestroy(&q);
 			return 0;
 		}
-		QueuePop(&q);
+
 	}
 
 	QueueDestroy(&q);
 	return 1;
 }
+
+
+int TreeHeight(BTNode* root)
+{
+	if (root == NULL)
+	{
+		return 0;
+	}
+
+	int height1 = TreeHeight(root->left);
+	int height2 = TreeHeight(root->right);
+	return height1 > height2 ? height1 + 1 : height2 + 1;
+}
+
+
+//int TreeHeight(BTNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return 0;
+//	}
+//
+//	return fmax(TreeHeight(root->left), TreeHeight(root->right)) + 1;
+//}
 
 
 int main()
@@ -293,12 +440,27 @@ int main()
 	BTNode* n4 = BTBuyNode(4);
 	BTNode* n5 = BTBuyNode(5);
 	BTNode* n6 = BTBuyNode(6);
+	BTNode* n7 = BTBuyNode(7);
+	BTNode* n8 = BTBuyNode(8);
+	BTNode* n9 = BTBuyNode(9);
+	/*BTNode* n10 = BTBuyNode(10);
+	BTNode* n11 = BTBuyNode(11);
+	BTNode* n12 = BTBuyNode(12);*/
+
 
 	n1->left = n2;
 	n1->right = n4;
 	n2->left = n3;
 	n4->left = n5;
 	n4->right = n6;
+
+	n2->right = n7;
+	n3->right = n8;
+	n3->left = n9;
+	//n6->left = n10;
+	/*n9->left = n10;
+	n10->left = n11;
+	n11->left = n12;*/
 
 	//PrevOrder(n1);
 	//printf("\n");
@@ -310,6 +472,7 @@ int main()
 
 	/*int size = TreeLeafSize(n1);
 	printf("%d\n", size);*/
+	printf("TreeLeafSize:%d\n", TreeLeafSize(n1));
 
 	/*int sz = BinaryTreeLevelKSize(n1, 3);
 	printf("%d", sz);*/
@@ -318,10 +481,11 @@ int main()
 	/*BTNode* p = TreeFind(n1, 6);
 	printf("%d\n", p->val);*/
 
-	//LevelOrder(n1);
+	LevelOrder(n1);
 
 	printf("TreeSize:%d\n", TreeSize(n1));
 	printf("TreeComplete:%d\n", TreeComplete(n1));
+	printf("TreeHeight:%d\n", TreeHeight(n1));
 
 	TreeDestroy(n1);
 	return 0;
