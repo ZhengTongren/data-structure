@@ -267,10 +267,19 @@ void TreeDestroy(BTNode* root)
 //}
 
 
+//int TreeSize(BTNode* root)
+//{
+//	if (root == NULL)
+//		return 0;
+//	return TreeSize(root->left) + TreeSize(root->right) + 1;
+//}
+
+
 int TreeSize(BTNode* root)
 {
 	if (root == NULL)
 		return 0;
+
 	return TreeSize(root->left) + TreeSize(root->right) + 1;
 }
 
@@ -368,6 +377,45 @@ void LevelOrder(BTNode* root)
 //	return 1;
 //}
 
+//
+//int TreeComplete(BTNode* root)
+//{
+//	Que q;
+//	QueueInit(&q);
+//
+//	if (root)
+//		QueuePush(&q, root);
+//
+//	while (!QueueEmpty(&q))
+//	{
+//		BTNode* front = QueueFront(&q);
+//		if (front == NULL)
+//		{
+//			break;
+//		}
+//
+//		QueuePush(&q, front->left);
+//		QueuePush(&q, front->right);
+//		QueuePop(&q);
+//	}
+//
+//	while (!QueueEmpty(&q))
+//	{
+//		BTNode* front = QueueFront(&q);
+//		QueuePop(&q);
+//
+//		if (front != NULL)
+//		{
+//			QueueDestroy(&q);
+//			return 0;
+//		}
+//
+//	}
+//
+//	QueueDestroy(&q);
+//	return 1;
+//}
+
 
 int TreeComplete(BTNode* root)
 {
@@ -381,31 +429,40 @@ int TreeComplete(BTNode* root)
 	{
 		BTNode* front = QueueFront(&q);
 		if (front == NULL)
-		{
 			break;
-		}
 
 		QueuePush(&q, front->left);
 		QueuePush(&q, front->right);
+
 		QueuePop(&q);
 	}
 
 	while (!QueueEmpty(&q))
 	{
 		BTNode* front = QueueFront(&q);
-		QueuePop(&q);
-
 		if (front != NULL)
 		{
 			QueueDestroy(&q);
 			return 0;
 		}
 
+		QueuePop(&q);
 	}
-
-	QueueDestroy(&q);
 	return 1;
 }
+
+//
+//int TreeHeight(BTNode* root)
+//{
+//	if (root == NULL)
+//	{
+//		return 0;
+//	}
+//
+//	int height1 = TreeHeight(root->left);
+//	int height2 = TreeHeight(root->right);
+//	return height1 > height2 ? height1 + 1 : height2 + 1;
+//}
 
 
 int TreeHeight(BTNode* root)
@@ -415,9 +472,10 @@ int TreeHeight(BTNode* root)
 		return 0;
 	}
 
-	int height1 = TreeHeight(root->left);
-	int height2 = TreeHeight(root->right);
-	return height1 > height2 ? height1 + 1 : height2 + 1;
+	int h1 = TreeHeight(root->left);
+	int h2 = TreeHeight(root->right);
+
+	return h1 > h2 ? h1 + 1: h2 + 1;
 }
 
 
