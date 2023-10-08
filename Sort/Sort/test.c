@@ -5,7 +5,7 @@
 
 int main()
 {
-	int a[] = { 9, 10, 2, 8, 4, 3, 6, 5, 11, 20, 13, 6 };
+	int a[] = { 9, 10, 2, 8, 4, 3, 6, 5, 11, 20, 13, 6, 10 };
 	int sz = sizeof(a) / sizeof(int);
 
 	//InsertSort(a, sz);
@@ -16,7 +16,8 @@ int main()
 
 	//PartSort2(a, 0, sz - 1);
 	//PartSort3(a, 0, sz - 1);
-	QuickSort(a, 0, sz - 1);
+	//QuickSort1(a, 0, sz - 1);
+	QuickSortNonR(a, 0, sz - 1);
 	PrintArray(a, sz);
 
 	return 0;

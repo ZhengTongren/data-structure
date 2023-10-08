@@ -163,16 +163,68 @@ void HeapSort(int* a, int n)
 
 
 // 三数取中
+//int GetMidi(int* a, int left, int right)
+//{
+//	int mid = (left + right) / 2;
+//	if (a[left] < a[right])
+//	{
+//		if (a[mid] < a[right])
+//		{
+//			return mid;
+//		}
+//		else if (a[mid] > a[right])
+//		{
+//			return right;
+//		}
+//		else
+//		{
+//			return left;
+//		}
+//	}
+//	else  // a[left] > a[right]
+//	{
+//		if (a[mid] < a[left])
+//		{
+//			return mid;
+//		}
+//		else if (a[mid] > a[left])
+//		{
+//			return left;
+//		}
+//		else
+//		{
+//			return right;
+//		}
+//	}
+//
+//}
+
+
 int GetMidi(int* a, int left, int right)
 {
 	int mid = (left + right) / 2;
-	if (a[left] < a[right])
+	if (a[left] > a[mid])
+	{
+		if (a[mid] > a[right])
+		{
+			return mid;
+		}
+		else if (a[right] < a[left])
+		{
+			return right;
+		}
+		else // 
+		{
+			return left;
+		}
+	}
+	else if (a[left] < a[mid])// a[left] < a[mid]
 	{
 		if (a[mid] < a[right])
 		{
 			return mid;
 		}
-		else if (a[mid] > a[right])
+		else if (a[left] < a[right])
 		{
 			return right;
 		}
@@ -181,28 +233,15 @@ int GetMidi(int* a, int left, int right)
 			return left;
 		}
 	}
-	else  // a[left] > a[right]
-	{
-		if (a[mid] < a[left])
-		{
-			return mid;
-		}
-		else if (a[mid] > a[left])
-		{
-			return left;
-		}
-		else
-		{
-			return right;
-		}
-	}
+	else
+		return mid;
 }
 
 
 int PartSort1(int* a, int left, int right)
 {
-	int midi = GetMidi(a, left, right);
-	Swap(&a[midi], &a[left]);
+	/*int midi = GetMidi(a, left, right);
+	Swap(&a[midi], &a[left]);*/
 
 	int keyi = left;
 	while (left < right)
@@ -320,12 +359,93 @@ int PartSort3(int* a, int left, int right)
 
 
 void QuickSort(int* a, int left, int right)
+
 {
 	if (left >= right)
 		return;
 
 	int keyi = PartSort3(a, left, right);
-	// [left, keyi - 1] keyi [keyi + 1, right]
 	QuickSort(a, left, keyi - 1);
 	QuickSort(a, keyi + 1, right);
+}
+
+
+void QuickSort1(int* a, int left, int right)
+{
+	if (left >= right)
+		return;
+
+	if (right - left + 1 > 10)
+	{
+		int keyi = PartSort3(a, left, right);
+		// [left, keyi - 1] keyi [keyi + 1, right]
+		QuickSort(a, left, keyi - 1);
+		QuickSort(a, keyi + 1, right);
+	}
+	else
+	{
+		InsertSort(a + left, right - left + 1);
+	}
+}
+
+
+//void QuickSort2(int* a, int left, int right)
+//{
+//	ST st;
+//	STInit(&st);
+//
+//	STPush(a, right);
+//	STPush(a, left);
+//
+//	while (!STEmpty(&st))
+//	{
+//		int left = STTop(&st);
+//		STPop(&st);
+//
+//		int right = STTop(&st);
+//		STPop(&st);
+//		int keyi = PartSort3(a, left, right);
+//		// [left, keyi - 1] keyi [keyi + 1, right]
+//		if (keyi + 1 < right)
+//		{
+//			STPush(&st, right);
+//			STPush(&sr, keyi + 1);
+//			QuickSort(a, ) // 递归
+//			// 要写的是非递归
+//		}
+//	}
+//}
+
+
+void QuickSortNonR(int* a, int begin, int end)
+{
+	ST st;
+	STInit(&st);
+
+	STPush(&st, end);
+	STPush(&st, begin);
+	while (!STEmpty(&st))
+	{
+		int left = STTop(&st);
+		STPop(&st);
+
+		int right = STTop(&st);
+		STPop(&st);
+
+		int keyi = PartSort1(a, left, right);
+		// [left, keyi - 1] keyi [keyi + 1, right]
+		if (keyi + 1 < right)
+		{
+			STPush(&st, right);
+			STPush(&st, keyi + 1);
+		}
+
+		if (left < keyi - 1)
+		{
+			STPush(&st, keyi - 1);
+			STPush(&st, left);
+		}
+	}
+
+	STDestroy(&st);
 }
