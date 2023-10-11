@@ -520,7 +520,7 @@ void _MergeSort(int* a, int* tmp, int begin, int end)
 		tmp[index++] = a[begin2++];
 	}
 
-	memcpy(a, tmp, sizeof(int) * (end - begin + 1));
+	memcpy(a + begin, tmp + begin, sizeof(int) * (end - begin + 1));
 }
 
 
