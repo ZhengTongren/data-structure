@@ -17,7 +17,8 @@ int main()
 	//PartSort2(a, 0, sz - 1);
 	//PartSort3(a, 0, sz - 1);
 	//QuickSort1(a, 0, sz - 1);
-	QuickSortNonR(a, 0, sz - 1);
+	//QuickSortNonR(a, 0, sz - 1);
+	MergeSort(a, sz);
 	PrintArray(a, sz);
 
 	return 0;
