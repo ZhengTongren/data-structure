@@ -537,3 +537,106 @@ void MergeSort(int* a, int n)
 
 	free(tmp);
 }
+
+
+//void MergeSortNonR(int* a, int n)
+//{
+//	int* tmp = (int*)malloc(sizeof(int) * n);
+//	if (tmp == NULL)
+//	{
+//		perror("malloc");
+//		return;
+//	}
+//
+//	int gap = 1;
+//	while (gap < n)
+//	{
+//		for (int i = 0; i < n; i += 2 * gap)
+//		{
+//			int begin1 = i, end1 = mid;
+//			int begin2 = mid + 1, end2 = end;
+//			int index = begin;
+//			while (begin1 <= end1 && begin2 <= end2)
+//			{
+//				if (a[begin1] < a[begin2])
+//				{
+//					tmp[index++] = a[begin1++];
+//				}
+//				else
+//				{
+//					tmp[index++] = a[begin2++];
+//				}
+//			}
+//
+//			while (begin1 <= end1)
+//			{
+//				tmp[index++] = a[begin1++];
+//			}
+//			while (begin2 <= end2)
+//			{
+//				tmp[index++] = a[begin2++];
+//			}
+//
+//			memcpy(a + begin, tmp + begin, sizeof(int) * (end - begin + 1));
+//		}
+//	}
+//
+//	free(tmp);
+//}
+
+
+void MergeSortNonR(int* a, int n)
+{
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	if (tmp == NULL)
+	{
+		perror("malloc");
+		return;
+	}
+
+	int gap = 1;
+	while (gap < n)
+	{
+		for (int i = 0; i < n; i += 2 * gap)
+		{
+			int begin1 = i, end1 = begin1 + gap - 1;
+			int begin2 = i + gap, end2 = i + 2 * gap - 1;
+
+			if (begin2 >= n)
+			{
+				break;
+			}
+			if (end2 >= n)
+			{
+				end1 = n - 1;
+			}
+
+			int index = begin1;
+			while (begin1 <= end1 && begin2 <= end2)
+			{
+				if (a[begin1] < a[begin2])
+				{
+					tmp[index++] = a[begin1++];
+				}
+				else
+				{
+					tmp[index++] = a[begin2++];
+				}
+			}
+
+			while (begin1 <= end1)
+			{
+				tmp[index++] = a[begin1++];
+			}
+			while (begin2 <= end2)
+			{
+				tmp[index++] = a[begin2++];
+			}
+
+			memcpy(a + i, tmp + i, sizeof(int) * (end2 - i + 1));
+		}
+		gap *= 2;
+	}
+
+	free(tmp);
+}
